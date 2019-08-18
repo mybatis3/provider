@@ -15,6 +15,7 @@
 
   <modules>
     <module>core</module>
+    <module>xml-builder</module>
   </modules>
 
   <properties>
