@@ -29,7 +29,7 @@ The following classes need to be in the same package as the above interface.
 
 ```java
 import org.apache.ibatis.builder.annotation.ProviderContext;
-import io.github.mybatis3.Providers;
+import Providers;
 
 import javax.persistence.Table;
 import java.util.Map;

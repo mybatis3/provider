@@ -43,7 +43,7 @@
   </environments>
 
   <mappers>
-    <mapper class="io.github.mybatis3.country.CountryMapper"/>
+      <mapper class="io.mybatis.provider.country.CountryMapper"/>
   </mappers>
 
 </configuration>
