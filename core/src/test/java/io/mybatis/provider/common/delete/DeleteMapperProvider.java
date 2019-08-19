@@ -27,7 +27,7 @@ public class DeleteMapperProvider {
   public String delete(Map<String, Object> params, ProviderContext context) {
     Class genericType = Providers.getSingleMapperType(context);
     Table table = (Table) genericType.getAnnotation(Table.class);
-    String script = "<delete id=\"delete\" resultType=\"" + genericType.getCanonicalName()
+    String script = "<delete id=\"delete\" resultType=\"" + genericType.getName()
         + "\"> delete from " + table.name() + " </delete>";
     return script;
   }

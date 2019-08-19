@@ -26,7 +26,7 @@ public class DeleteByPrimaryKeyMapperProvider {
   public String deleteByPrimaryKey(Object params, ProviderContext context) {
     Class genericType = Providers.getSingleMapperType(context);
     Table table = (Table) genericType.getAnnotation(Table.class);
-    String script = "<delete id=\"deleteByPrimaryKey\" resultType=\"" + genericType.getCanonicalName()
+      String script = "<delete id=\"deleteByPrimaryKey\" resultType=\"" + genericType.getName()
         + "\"> delete from " + table.name() + " where id = #{_parameter}</delete>";
     return script;
   }

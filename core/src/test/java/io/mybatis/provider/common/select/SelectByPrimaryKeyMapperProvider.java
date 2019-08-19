@@ -26,7 +26,7 @@ public class SelectByPrimaryKeyMapperProvider {
   public String selectByPrimaryKey(Object params, ProviderContext context) {
     Class genericType = Providers.getReturnType(context);
     Table table = (Table) genericType.getAnnotation(Table.class);
-    String script = "<select id=\"selectByPrimaryKey\" resultType=\"" + genericType.getCanonicalName()
+    String script = "<select id=\"selectByPrimaryKey\" resultType=\"" + genericType.getName()
         + "\"> select * from " + table.name() + " where id = #{id}</select>";
     return script;
   }

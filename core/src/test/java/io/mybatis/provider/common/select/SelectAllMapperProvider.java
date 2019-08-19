@@ -27,7 +27,7 @@ public class SelectAllMapperProvider {
   public String selectAll(Map<String, Object> params, ProviderContext context) {
     Class entityClass = Providers.getReturnType(context);
     Table table = (Table) entityClass.getAnnotation(Table.class);
-    String script = "<select id=\"selectAll\" resultType=\"" + entityClass.getCanonicalName()
+    String script = "<select id=\"selectAll\" resultType=\"" + entityClass.getName()
         + "\"> select * from " + table.name() + "</select>";
     return script;
   }
