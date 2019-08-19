@@ -13,6 +13,21 @@ public class XmlBuilder extends BaseXmlBuilder<XmlBuilder> {
         return (SelectXmlBuilder) node;
     }
 
+    public InsertXmlBuilder insert(String id) {
+        this.node = new InsertXmlBuilder(id);
+        return (InsertXmlBuilder) node;
+    }
+
+    public UpdateXmlBuilder update(String id) {
+        this.node = new UpdateXmlBuilder(id);
+        return (UpdateXmlBuilder) node;
+    }
+
+    public DeleteXmlBuilder delete(String id) {
+        this.node = new DeleteXmlBuilder(id);
+        return (DeleteXmlBuilder) node;
+    }
+
     @Override
     public String body() {
         return node.body();

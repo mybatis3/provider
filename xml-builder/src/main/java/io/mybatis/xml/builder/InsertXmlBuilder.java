@@ -19,9 +19,16 @@ class InsertXmlBuilder extends BaseXmlBuilder<InsertXmlBuilder> {
     private Boolean useGeneratedKeys;
     private String databaseId;
     private String lang;
+    
+    private SelectKeyXmlBuilder selectKeyXmlBuilder;
 
     InsertXmlBuilder(String id) {
         this.id = id;
+    }
+
+    public SelectKeyXmlBuilder selectKey() {
+        selectKeyXmlBuilder = new SelectKeyXmlBuilder();
+        return selectKeyXmlBuilder;
     }
 
     public InsertXmlBuilder parameterMap(String parameterMap) {

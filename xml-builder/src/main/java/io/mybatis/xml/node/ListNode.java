@@ -22,9 +22,12 @@ public class ListNode extends NodeAdapter {
     public String body() {
         StringBuilder bodyBuilder = new StringBuilder();
         for (Node node : nodes) {
-            bodyBuilder.append(node.prefix())
-                    .append(node.body())
-                    .append(node.suffix());
+            bodyBuilder.append(" ")
+                .append(node.prefix())
+                .append(" ")
+                .append(node.body())
+                .append(" ")
+                .append(node.suffix());
         }
         return bodyBuilder.toString();
     }
