@@ -1,5 +1,6 @@
 package io.mybatis.xml.builder;
 
+import io.mybatis.xml.Node;
 import org.apache.ibatis.jdbc.SQL;
 import org.junit.Test;
 
@@ -50,7 +51,7 @@ public class SelectXmlBuilderTest {
                         text("select id, user_name userName", column("user_password", "userPassword")),
                         text("from user"),
                         //tableName(User.class),
-                        where().then(
+                        where(
                             If("@tk.mybatis.util.StringUtil@isNotEmpty(userName)")
                                 .then("and user_name like concat('%', #{userName}, '%')"),//同 body
                             If("userEmail != ''").and("userEmail != null")
@@ -65,6 +66,26 @@ public class SelectXmlBuilderTest {
     public void testSelectByExample() {
         System.out.println(new XmlBuilder() {
             {
+                Node Example_Where_Clause = where(
+                    foreach("oredCriteria")
+                        .item("criteria")
+                        .separator("or")
+                        .then(
+                            If("criteria.valid").then(
+                                trim().prefix("(").suffix(")").prefixOverrides("and").then(
+                                    foreach("criteria.criteria").item("criterion").then(
+                                        choose().when("criterion.noValue").then("and ${criterion.condition}")
+                                            .when("criterion.singleValue").then("and ${criterion.condition} #{criterion.value}")
+                                            .when("criterion.betweenValue").then("and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}")
+                                            .when("criterion.listValue").then(
+                                            "and ${criterion.condition}",
+                                            foreach("criterion.value").item("listItem").open("(").close(")").separator(",").then("#{listItem}")
+                                        ).otherwise("otherwise!!!")
+                                    )
+                                )
+                            )
+                        )
+                );
                 select("selectByExample")
                     .parameterType("tk.mybatis.simple.model.CountryExample")
                     .resultType("tk.mybatis.simple.model.SysUser")
@@ -74,26 +95,7 @@ public class SelectXmlBuilderTest {
                         "id, countryname, countrycode",
                         "from country",
                         If("_parameter != null").then(
-                            where().then(
-                                foreach("oredCriteria")
-                                    .item("criteria")
-                                    .separator("or")
-                                    .then(
-                                        If("criteria.valid").then(
-                                            trim().prefix("(").suffix(")").prefixOverrides("and").then(
-                                                foreach("criteria.criteria").item("criterion").then(
-                                                    choose().when("criterion.noValue").then("and ${criterion.condition}")
-                                                        .when("criterion.singleValue").then("and ${criterion.condition} #{criterion.value}")
-                                                        .when("criterion.betweenValue").then("and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}")
-                                                        .when("criterion.listValue").then(
-                                                        "and ${criterion.condition}",
-                                                        foreach("criterion.value").item("listItem").open("(").close(")").separator(",").then("#{listItem}")
-                                                    ).otherwise("otherwise!!!")
-                                                )
-                                            )
-                                        )
-                                    )
-                            )
+                            Example_Where_Clause
                         ),
                         If("orderByClause != null").then("order by ${orderByClause}")
                     );

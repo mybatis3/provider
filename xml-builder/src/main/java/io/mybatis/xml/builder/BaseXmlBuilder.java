@@ -11,14 +11,22 @@ import io.mybatis.xml.util.NodeUtil;
  */
 public abstract class BaseXmlBuilder<T extends BaseXmlBuilder<T>> extends BodyThenXmlBuilder<T> {
 
+    public SelectKeyXmlBuilder selectKey() {
+        return new SelectKeyXmlBuilder();
+    }
+
     /**
      * &lt;where&gt;
      * &lt;/where&gt;
      *
      * @return
      */
-    public WhereXmlBuilder where() {
-        return new WhereXmlBuilder();
+    public WhereXmlBuilder where(Object... nodes) {
+        return new WhereXmlBuilder().body(nodes);
+    }
+
+    public SetXmlBuilder set(Object... nodes) {
+        return new SetXmlBuilder().body(nodes);
     }
 
     public TrimXmlBuilder trim() {
