@@ -34,6 +34,11 @@ class InsertXmlBuilder extends BaseXmlBuilder<InsertXmlBuilder> {
         return this;
     }
 
+    public InsertXmlBuilder parameterType(Class<?> parameterType) {
+        this.parameterType = parameterType != null ? parameterType.getName() : null;
+        return this;
+    }
+
     public InsertXmlBuilder statementType(StatementType statementType) {
         this.statementType = statementType;
         return this;

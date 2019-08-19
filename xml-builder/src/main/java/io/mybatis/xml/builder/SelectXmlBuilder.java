@@ -38,6 +38,11 @@ class SelectXmlBuilder extends BaseXmlBuilder<SelectXmlBuilder> {
         return this;
     }
 
+    public SelectXmlBuilder parameterType(Class<?> parameterType) {
+        this.parameterType = parameterType != null ? parameterType.getName() : null;
+        return this;
+    }
+
     public SelectXmlBuilder resultMap(String resultMap) {
         this.resultMap = resultMap;
         return this;
@@ -45,6 +50,11 @@ class SelectXmlBuilder extends BaseXmlBuilder<SelectXmlBuilder> {
 
     public SelectXmlBuilder resultType(String resultType) {
         this.resultType = resultType;
+        return this;
+    }
+
+    public SelectXmlBuilder resultType(Class resultType) {
+        this.resultType = resultType != null ? resultType.getName() : null;
         return this;
     }
 

@@ -34,6 +34,11 @@ class UpdateXmlBuilder extends BaseXmlBuilder<UpdateXmlBuilder> {
         return this;
     }
 
+    public UpdateXmlBuilder parameterType(Class<?> parameterType) {
+        this.parameterType = parameterType != null ? parameterType.getName() : null;
+        return this;
+    }
+
     public UpdateXmlBuilder statementType(StatementType statementType) {
         this.statementType = statementType;
         return this;

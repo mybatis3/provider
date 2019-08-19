@@ -19,6 +19,11 @@ public class SelectKeyXmlBuilder extends BaseXmlBuilder<SelectKeyXmlBuilder> imp
         return this;
     }
 
+    public SelectKeyXmlBuilder resultType(Class resultType) {
+        this.resultType = resultType != null ? resultType.getName() : null;
+        return this;
+    }
+
     public SelectKeyXmlBuilder statementType(StatementType statementType) {
         this.statementType = statementType;
         return this;

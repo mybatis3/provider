@@ -30,6 +30,11 @@ public class DeleteXmlBuilder extends BaseXmlBuilder<DeleteXmlBuilder> {
         return this;
     }
 
+    public DeleteXmlBuilder parameterType(Class<?> parameterType) {
+        this.parameterType = parameterType != null ? parameterType.getName() : null;
+        return this;
+    }
+
     public DeleteXmlBuilder statementType(StatementType statementType) {
         this.statementType = statementType;
         return this;
