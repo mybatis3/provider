@@ -41,6 +41,13 @@ public abstract class NodeUtil implements Node {
         }
     }
 
+    /**
+     * if value is not empty, return "name = \"value\""
+     *
+     * @param name
+     * @param value
+     * @return
+     */
     public static String nameEqualValue(String name, Object value) {
         if (value != null) {
             String str = value.toString();

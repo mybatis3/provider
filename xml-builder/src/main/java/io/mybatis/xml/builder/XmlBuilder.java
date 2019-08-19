@@ -8,21 +8,49 @@ import io.mybatis.xml.Node;
 public class XmlBuilder extends BaseXmlBuilder<XmlBuilder> {
     private Node node;
 
+    /**
+     * &lt;select&gt;
+     * &lt;/select&gt;
+     *
+     * @param id
+     * @return
+     */
     public SelectXmlBuilder select(String id) {
         this.node = new SelectXmlBuilder(id);
         return (SelectXmlBuilder) node;
     }
 
+    /**
+     * &lt;insert&gt;
+     * &lt;/insert&gt;
+     *
+     * @param id
+     * @return
+     */
     public InsertXmlBuilder insert(String id) {
         this.node = new InsertXmlBuilder(id);
         return (InsertXmlBuilder) node;
     }
 
+    /**
+     * &lt;update&gt;
+     * &lt;/update&gt;
+     *
+     * @param id
+     * @return
+     */
     public UpdateXmlBuilder update(String id) {
         this.node = new UpdateXmlBuilder(id);
         return (UpdateXmlBuilder) node;
     }
 
+    /**
+     * &lt;delete&gt;
+     * &lt;/delete&gt;
+     *
+     * @param id
+     * @return
+     */
     public DeleteXmlBuilder delete(String id) {
         this.node = new DeleteXmlBuilder(id);
         return (DeleteXmlBuilder) node;
