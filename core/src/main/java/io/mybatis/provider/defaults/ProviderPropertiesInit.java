@@ -46,23 +46,22 @@ public class ProviderPropertiesInit implements ProviderInit {
    * @return
    */
   public Properties initProperties() {
-    Properties defaultProperties = null;
+    Properties properties = null;
     try {
       InputStream defaultInputStream = Resources.getResourceAsStream(DEFAULT_PROVIDER_PROPERTIES);
-      defaultProperties = new Properties();
-      defaultProperties.load(defaultInputStream);
+      properties = new Properties();
+      properties.load(defaultInputStream);
     } catch (IOException e) {
       //ignore
     }
     try {
       InputStream inputStream = Resources.getResourceAsStream(USER_PROVIDER_PROPERTIES);
-      Properties properties = new Properties(defaultProperties);
+      properties = new Properties(properties);
       properties.load(inputStream);
-      return properties;
     } catch (IOException e) {
       //ignore
     }
-    return defaultProperties;
+    return new SystemProperties(properties);
   }
 
   @Override
