@@ -72,7 +72,7 @@ public class MapperTest {
       CountryMapper mapper = session.getMapper(CountryMapper.class);
 
       List<Country> countries = mapper.selectAll();
-      Assert.assertEquals(183, countries.size());
+      Assert.assertEquals(5, countries.size());
 
       Assert.assertNotNull(mapper.selectByPrimaryKey(1L));
     } finally {
