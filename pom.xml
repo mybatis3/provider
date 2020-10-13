@@ -24,7 +24,7 @@
     <mybatis.version>3.5.2</mybatis.version>
     <log4j.version>1.2.17</log4j.version>
     <jpa.version>1.0</jpa.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13.1</junit.version>
     <hsqldb.version>2.4.1</hsqldb.version>
   </properties>
 
